@@ -9,6 +9,8 @@ use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\IndustryController;
 use App\Http\Controllers\TechnologyController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\ConsultationController;
+use App\Http\Controllers\BranchController;
 
 
 
@@ -68,5 +70,16 @@ Route::post('insertportfolio', [PortfolioController::class, 'insert']);
 Route::get('editportfolio/{id}', [PortfolioController::class, 'edit']);
 Route::post('portfolios/update/{id}', [PortfolioController::class, 'update'])->name('portfolio.update');
 Route::post('bulkDelete', [PortfolioController::class, 'bulkDelete']);
+
+
+Route::get('branches', [BranchController::class, 'list']);
+Route::get('addbranch', [BranchController::class, 'branchform']);
+Route::post('insertbranch', [BranchController::class, 'insert']);
+Route::get('editbranch/{id}', [BranchController::class, 'edit']);
+Route::post('branches/update/{id}', [BranchController::class, 'update'])->name('branch.update');
+Route::post('bulkDelete', [BranchController::class, 'bulkDelete']);
+
+
+
 
 });

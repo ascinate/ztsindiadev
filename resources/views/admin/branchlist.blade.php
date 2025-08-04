@@ -37,7 +37,7 @@
                   <div class="col-lg-12 grid-margin stretch-card">
                       <div class="card">
                           <div class="card-body">
-                              <h4 class="card-title">Service List</h4>
+                              <h4 class="card-title">Branch List</h4>
 
                               <form action="{{ URL::to('bulkDelete') }}" method="POST" onsubmit="return confirm('Are you sure you want to delete selected brands?');">
                                   @csrf
@@ -49,34 +49,32 @@
                                             <th><input type="checkbox" id="select_all"></th>
                                             <th>ID</th>
                                             <th>Name</th>
-                                            <th>Price</th>
-                                            <th>Short Description</th>
-                                            <th>Description</th>
-                                            <th>Icon</th>
+                                            <th>Phone</th>
+                                            <th>Address</th>
+                                            <th>photo</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @foreach ($services as $service)
+                                        @foreach ($branches as $branch)
                                         <tr>
                                             <td>
-                                                <input type="checkbox" name="service_ids[]" value="{{ $service->id }}" class="checkbox">
+                                                <input type="checkbox" name="branch_ids[]" value="{{ $branch->id }}" class="checkbox">
                                             </td>
-                                            <td>{{ $service->id }}</td>
-                                            <td>{{ $service->name }}</td>
-                                            <td>{{ $service->price }}</td>
-                                            <td>{{ $service->short_description }}</td>
-                                            <td>{{ $service->description }}</td>
+                                            <td>{{ $branch->id }}</td>
+                                            <td>{{ $branch->name }}</td>
+                                            <td>{{ $branch->phone }}</td>
+                                            <td>{{ $branch->address }}</td>
                                             <td>
-                                                @if($service->icon)
-                                                    <img src="{{ asset('uploads/' . $service->icon) }}" alt="{{ $service->name }}" width="40">
+                                                @if($branch->photo)
+                                                    <img src="{{ asset('uploads/' . $branch->photo) }}" alt="{{ $branch->name }}" width="40">
                                                 @else
-                                                    <span>No Icon</span>
+                                                    <span>No Photo</span>
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ URL::to('editservice', $service->id) }}">
+                                                <a href="{{ URL::to('editbranch', $branch->id) }}">
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </a>
                                             </td>

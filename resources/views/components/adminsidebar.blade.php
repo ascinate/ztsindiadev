@@ -423,6 +423,61 @@
 
         </li>
 
+        <li class="nav-item">
+
+
+
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic9" aria-expanded="false" aria-controls="ui-basic">
+
+
+
+            <span class="menu-title">Manage Branch</span>
+
+
+
+            <i class="menu-arrow"></i>
+
+
+
+            <i class="mdi mdi-account-multiple-plus menu-icon"></i>
+
+
+
+          </a>
+
+
+
+
+
+
+
+          <div class="collapse" id="ui-basic9">
+
+
+
+            <ul class="nav flex-column sub-menu">
+
+
+
+              <li class="nav-item"> <a class="nav-link" href="{{ URL::to('branches') }}">Branch List</a></li>
+
+
+
+              <li class="nav-item"> <a class="nav-link" href="{{ URL::to('addbranch') }}">Add Branch</a></li>
+
+
+
+            </ul>
+
+
+
+          </div>
+
+
+
+        </li>
+
+
 
 
 
