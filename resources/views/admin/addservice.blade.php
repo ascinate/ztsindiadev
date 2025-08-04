@@ -1,0 +1,58 @@
+<x-adminheader/>
+      <!-- partial -->
+   <x-adminsidebar/>
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+
+           <!----Main Row--------->
+          <form name="addfrm" action="{{ URL::to('insertservice') }}" method="POST" class="forms-sample" enctype="multipart/form-data">
+              @csrf
+
+              <div class="row">
+                  <div class="col-12 grid-margin stretch-card">
+                      <div class="card mt-5">
+                          <div class="card-body">
+                              <h4 class="card-title">Add Service</h4>
+
+                              <div class="form-group">
+                                  <label>Service Name</label>
+                                  <input type="text" name="name" class="form-control" required>
+                              </div>
+
+                              <div class="form-group">
+                                  <label>Price</label>
+                                  <input type="number" name="price" class="form-control" step="0.01" min="0" required>
+                              </div>
+
+                              <div class="form-group">
+                                  <label>Short Description</label>
+                                  <input type="text" name="short_description" class="form-control">
+                              </div>
+
+                              <div class="form-group">
+                                  <label>Full Description</label>
+                                  <textarea name="description" class="form-control" rows="4"></textarea>
+                              </div>
+
+                              <div class="form-group">
+                                  <label>Icon</label>
+                                  <input type="file" class="form-control" name="icon" accept="image/*" required>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-lg-3 mt-3">
+                      <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                      <button type="button" class="btn btn-light" onclick="javascript:history.go(-1);">Cancel</button>
+                  </div>
+              </div>
+          </form>
+
+
+         </div>
+        </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+    <x-adminfooter/>
