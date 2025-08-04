@@ -11,6 +11,8 @@ use App\Http\Controllers\TechnologyController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\NewsController;
 
 
 
@@ -78,6 +80,22 @@ Route::post('insertbranch', [BranchController::class, 'insert']);
 Route::get('editbranch/{id}', [BranchController::class, 'edit']);
 Route::post('branches/update/{id}', [BranchController::class, 'update'])->name('branch.update');
 Route::post('bulkDelete', [BranchController::class, 'bulkDelete']);
+
+
+Route::get('blogs', [BlogController::class, 'list']);
+Route::get('addblog', [BlogController::class, 'blogform']);
+Route::post('insertblog', [BlogController::class, 'insert']);
+Route::get('editblog/{id}', [BlogController::class, 'edit']);
+Route::post('blogs/update/{id}', [BlogController::class, 'update'])->name('blog.update');
+Route::post('bulkDelete', [BlogController::class, 'bulkDelete']);
+
+
+Route::get('news', [NewsController::class, 'list']);
+Route::get('addnews', [NewsController::class, 'newsform']);
+Route::post('insertnews', [NewsController::class, 'insert']);
+Route::get('editnews/{id}', [NewsController::class, 'edit']);
+Route::post('news/update/{id}', [NewsController::class, 'update'])->name('news.update');
+Route::post('bulkDelete', [NewsController::class, 'bulkDelete']);
 
 
 

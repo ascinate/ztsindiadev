@@ -478,6 +478,115 @@
         </li>
 
 
+        <li class="nav-item">
+
+
+
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic10" aria-expanded="false" aria-controls="ui-basic">
+
+
+
+            <span class="menu-title">Manage Blog</span>
+
+
+
+            <i class="menu-arrow"></i>
+
+
+
+            <i class="mdi mdi-account-multiple-plus menu-icon"></i>
+
+
+
+          </a>
+
+
+
+
+
+
+
+          <div class="collapse" id="ui-basic10">
+
+
+
+            <ul class="nav flex-column sub-menu">
+
+
+
+              <li class="nav-item"> <a class="nav-link" href="{{ URL::to('blogs') }}">Blog List</a></li>
+
+
+
+              <li class="nav-item"> <a class="nav-link" href="{{ URL::to('addblog') }}">Add Blog</a></li>
+
+
+
+            </ul>
+
+
+
+          </div>
+
+
+
+        </li>
+
+        <li class="nav-item">
+
+
+
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic11" aria-expanded="false" aria-controls="ui-basic">
+
+
+
+            <span class="menu-title">Manage News</span>
+
+
+
+            <i class="menu-arrow"></i>
+
+
+
+            <i class="mdi mdi-account-multiple-plus menu-icon"></i>
+
+
+
+          </a>
+
+
+
+
+
+
+
+          <div class="collapse" id="ui-basic11">
+
+
+
+            <ul class="nav flex-column sub-menu">
+
+
+
+              <li class="nav-item"> <a class="nav-link" href="{{ URL::to('news') }}">News List</a></li>
+
+
+
+              <li class="nav-item"> <a class="nav-link" href="{{ URL::to('addnews') }}">Add News</a></li>
+
+
+
+            </ul>
+
+
+
+          </div>
+
+
+
+        </li>
+
+
 
 
 
