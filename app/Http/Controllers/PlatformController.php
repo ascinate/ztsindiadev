@@ -73,7 +73,7 @@ class PlatformController extends Controller
                 $image->move(('uploads/'), $iconName);
             }
 
-            $brand->update([
+            $platform->update([
                 'name' => $request->name,
                 'icon' => $iconName,
             ]);

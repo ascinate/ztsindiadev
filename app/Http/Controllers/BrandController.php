@@ -18,7 +18,7 @@ class BrandController extends Controller
         {
             $request->validate([
                 'title' => 'required|string|max:255',
-                'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             ]);
 
             $iconName = null;
@@ -55,8 +55,9 @@ class BrandController extends Controller
         {
             $request->validate([
                 'title' => 'required|string|max:255',
-                'icon' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
+                'icon' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
             ]);
+            
 
             $brand = Brand::findOrFail($id);
 

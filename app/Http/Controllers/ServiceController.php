@@ -19,7 +19,7 @@ class ServiceController extends Controller
             $request->validate([
                 'name' => 'required|string|max:255',
                 'price' => 'required|numeric|min:0',
-                'short_description' => 'nullable|string|max:255',
+                'short_description' => 'nullable|string|max:2055',
                 'description' => 'nullable|string',
                 'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);

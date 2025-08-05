@@ -13,9 +13,14 @@ use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\HomeController;
 
 
 
+
+
+
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/admin', function () {
     return view('admin/login');
 });
@@ -80,6 +85,10 @@ Route::post('insertbranch', [BranchController::class, 'insert']);
 Route::get('editbranch/{id}', [BranchController::class, 'edit']);
 Route::post('branches/update/{id}', [BranchController::class, 'update'])->name('branch.update');
 Route::post('bulkDelete', [BranchController::class, 'bulkDelete']);
+
+Route::get('consultations', [ConsultationController::class, 'list']);
+Route::post('insertconsultation', [ConsultationController::class, 'insert']);
+
 
 
 Route::get('blogs', [BlogController::class, 'list']);
