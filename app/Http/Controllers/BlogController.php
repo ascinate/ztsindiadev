@@ -93,4 +93,45 @@ class BlogController extends Controller
 
             return redirect('blogs')->with('success', 'Blog updated successfully.');
         }
+
+    public function blogDelete(Request $request)
+    {
+        $ids = $request->input('blog_ids');
+
+        if (!$ids || !is_array($ids)) {
+            return back()->with('error', 'No blogs selected for deletion.');
+        }
+
+        foreach ($ids as $id) {
+            $blog = Blog::find($id);
+
+            if ($blog) {
+                // Delete images from storage
+                if ($blog->image) {
+                    $imageFiles = explode(',', $blog->image);
+
+                    foreach ($imageFiles as $imageFile) {
+                        $filePath = 'uploads/' . trim($imageFile);
+                        if (file_exists($filePath)) {
+                            @unlink($filePath);
+                        }
+                    }
+                }
+
+                // Delete blog record
+                $blog->delete();
+            }
+        }
+
+        return back()->with('success', 'Selected blogs deleted successfully.');
+    }
+
+        public function blogpage(Request $request)
+        {
+             $blogs = Blog::all();
+
+            return view('blog', ['blogs' => $blogs]);
+
+        }
+    
 }

@@ -30,7 +30,7 @@ $(document).ready(function(){
 	$('.slider-sections-logo').owlCarousel({
 		loop: true,
 		margin:30,
-		autoplay:true,
+		autoplay:false,
 		nav:false,
 		dots:true,
 		responsive: {
@@ -114,7 +114,7 @@ $(document).ready(function(){
     $('.how-its-slider').owlCarousel({
 		loop: true,
 		margin:100,
-		autoplay:true,
+		autoplay:false,
 		nav:false,
 		dots:false,
 		responsive: {
@@ -161,6 +161,35 @@ $(document).ready(function(){
 			}
 		}
 	 })
+
+
+	$('.owlExpcustomized-news').owlCarousel({
+		loop: true,
+		margin:20,
+		autoplay:true,
+		nav:true,
+		dots:false,
+		responsive: {
+			0: {
+				items:1
+			},
+			600: {
+				items:1
+			},
+			667: {
+			  items:2
+			},
+			1000: {
+				items:3
+			},
+			1200: {
+			 items:4
+			}
+		}
+	 })
+
+
+	 
 
 	 $('.slider-footer').owlCarousel({
 		loop: true,

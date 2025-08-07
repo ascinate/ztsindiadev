@@ -35,4 +35,18 @@ class ConsultationController extends Controller
 
             return redirect()->back()->with('success', 'Consultation submitted successfully.');
         }
+
+            public function ConsultationDelete(Request $request)
+            {
+                $ids = $request->input('consultation_ids');
+
+                if (!$ids || !is_array($ids)) {
+                    return back()->with('error', 'No consultations selected for deletion.');
+                }
+
+                Consultation::whereIn('id', $ids)->delete();
+
+                return back()->with('success', 'Selected consultations deleted successfully.');
+            }
+
 }

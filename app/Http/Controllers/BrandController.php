@@ -82,4 +82,30 @@ class BrandController extends Controller
 
             return redirect('brands')->with('success', 'Brand updated successfully.');
         }
+
+
+            public function brandDelete(Request $request)
+            {
+                $ids = $request->input('brand_ids'); // Input name is brand_ids[] from your form
+
+                if (!$ids || !is_array($ids)) {
+                    return back()->with('error', 'No brands selected for deletion.');
+                }
+
+                foreach ($ids as $id) {
+                    $brand = \App\Models\Brand::find($id);
+
+                    if ($brand) {
+                        // Delete icon file if it exists
+                        if ($brand->icon && file_exists(public_path('uploads/' . $brand->icon))) {
+                            unlink('uploads/' . $brand->icon);
+                        }
+
+                        $brand->delete();
+                    }
+                }
+
+              return back()->with('success', 'Selected brands deleted successfully.');
+            }
+            
 }

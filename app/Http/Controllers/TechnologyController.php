@@ -83,4 +83,28 @@ class TechnologyController extends Controller
 
             return redirect('technologies')->with('success', 'Service updated successfully.');
         }
+
+         public function technologyDelete(Request $request)
+        {
+            $ids = $request->input('technology_ids'); // Checkbox values from form
+
+            if (!$ids || !is_array($ids)) {
+                return back()->with('error', 'No technologies selected for deletion.');
+            }
+
+            foreach ($ids as $id) {
+                $technology = \App\Models\Technology::find($id);
+
+                if ($technology) {
+                    // Delete the icon file if it exists
+                    if ($technology->icon && file_exists('uploads/' . $technology->icon)) {
+                        unlink('uploads/' . $technology->icon);
+                    }
+
+                    $technology->delete();
+                }
+            }
+
+            return back()->with('success', 'Selected technologies deleted successfully.');
+        }
 }

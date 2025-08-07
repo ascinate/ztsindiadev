@@ -93,5 +93,30 @@ class BranchController extends Controller
             return redirect('branches')->with('success', 'Branch updated successfully.');
         }
 
+          public function branchDelete(Request $request)
+        {
+            $ids = $request->input('branch_ids');
+
+            if (!$ids || !is_array($ids)) {
+                return back()->with('error', 'No branches selected for deletion.');
+            }
+
+            foreach ($ids as $id) {
+                $branch = Branch::find($id);
+
+                if ($branch) {
+                    // Delete the branch photo if it exists
+                    if ($branch->photo && file_exists('uploads/' . $branch->photo)) {
+                        @unlink('uploads/' . $branch->photo);
+                    }
+
+                    // Delete the branch record
+                    $branch->delete();
+                }
+            }
+
+            return back()->with('success', 'Selected branches deleted successfully.');
+        }
+
 
 }

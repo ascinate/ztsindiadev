@@ -84,4 +84,28 @@ class IndustryController extends Controller
             return redirect('industries')->with('success', 'Service updated successfully.');
         }
 
+        public function industryDelete(Request $request)
+        {
+            $ids = $request->input('industry_ids'); // from form checkbox names
+
+            if (!$ids || !is_array($ids)) {
+                return back()->with('error', 'No industries selected for deletion.');
+            }
+
+            foreach ($ids as $id) {
+                $industry = \App\Models\Industry::find($id);
+
+                if ($industry) {
+                    // Delete icon file if it exists
+                    if ($industry->icon && file_exists('uploads/' . $industry->icon)) {
+                        unlink('uploads/' . $industry->icon);
+                    }
+
+                    $industry->delete();
+                }
+            }
+
+            return back()->with('success', 'Selected industries deleted successfully.');
+        }
+
 }

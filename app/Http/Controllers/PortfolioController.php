@@ -96,6 +96,35 @@ class PortfolioController extends Controller
             return redirect('portfolios')->with('success', 'Portfolio updated successfully.');
         }
 
+        public function portfolioDelete(Request $request)
+        {
+            $ids = $request->input('portfolio_ids');
 
+            if (!$ids || !is_array($ids)) {
+                return back()->with('error', 'No portfolios selected for deletion.');
+            }
+
+            foreach ($ids as $id) {
+                $portfolio = Portfolio::find($id);
+
+                if ($portfolio) {
+                    // Delete all images associated with this portfolio
+                    if ($portfolio->images) {
+                        $images = explode(',', $portfolio->images);
+                        foreach ($images as $img) {
+                            $imgPath ='uploads/' . trim($img);
+                            if (file_exists($imgPath)) {
+                                @unlink($imgPath);
+                            }
+                        }
+                    }
+
+                    // Delete the portfolio record
+                    $portfolio->delete();
+                }
+            }
+
+            return back()->with('success', 'Selected portfolios deleted successfully.');
+        }
 
 }

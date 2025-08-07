@@ -621,7 +621,7 @@
 
 
 
-              <li class="nav-item"> <a class="nav-link" href="{{ URL::to('news') }}">News List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{ URL::to('contentnews') }}">News List</a></li>
 
 
 

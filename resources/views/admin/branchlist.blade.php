@@ -39,7 +39,7 @@
                           <div class="card-body">
                               <h4 class="card-title">Branch List</h4>
 
-                              <form action="{{ URL::to('bulkDelete') }}" method="POST" onsubmit="return confirm('Are you sure you want to delete selected brands?');">
+                              <form action="{{ URL::to('branchDelete') }}" method="POST" onsubmit="return confirm('Are you sure you want to delete selected brands?');">
                                   @csrf
                                   <button type="submit" class="btn btn-danger mb-3">Delete</button>
 

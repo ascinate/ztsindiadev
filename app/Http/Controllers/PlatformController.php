@@ -80,4 +80,29 @@ class PlatformController extends Controller
 
             return redirect('platforms')->with('success', 'Brand updated successfully.');
         }
+
+         public function platformDelete(Request $request)
+        {
+            $ids = $request->input('platform_ids'); // Array of selected checkboxes
+
+            if (!$ids || !is_array($ids)) {
+                return back()->with('error', 'No platforms selected for deletion.');
+            }
+
+            foreach ($ids as $id) {
+                $platform = \App\Models\Platform::find($id);
+
+                if ($platform) {
+                    // Delete the icon file if it exists
+                    if ($platform->icon && file_exists('uploads/' . $platform->icon)) {
+                        unlink('uploads/' . $platform->icon);
+                    }
+
+                    $platform->delete();
+                }
+            }
+
+            return back()->with('success', 'Selected platforms deleted successfully.');
+        }
+
 }

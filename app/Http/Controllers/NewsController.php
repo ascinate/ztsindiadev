@@ -43,7 +43,7 @@ class NewsController extends Controller
                 'image' => $images, // make sure 'images' is a TEXT column in DB
             ]);
 
-             return redirect('news')->with('success', 'news created successfully.');
+             return redirect('contentnews')->with('success', 'news created successfully.');
         }
 
          public function list(Request $request)
@@ -91,6 +91,44 @@ class NewsController extends Controller
                 'image' => implode(',', $existingImages),
             ]);
 
-            return redirect('news')->with('success', 'news updated successfully.');
+            return redirect('contentnews')->with('success', 'news updated successfully.');
+        }
+
+          public function newsDelete(Request $request)
+        {
+            $ids = $request->input('contentNew_ids');
+
+            if (!$ids || !is_array($ids)) {
+                return back()->with('error', 'No news items selected for deletion.');
+            }
+
+            foreach ($ids as $id) {
+                $newsItem = contentNews::find($id);
+
+                if ($newsItem) {
+                    // Delete image files from public/uploads
+                    if ($newsItem->image) {
+                        $imageFiles = explode(',', $newsItem->image);
+                        foreach ($imageFiles as $imageFile) {
+                            $filePath ='uploads/' . trim($imageFile);
+                            if (file_exists($filePath)) {
+                                @unlink($filePath);
+                            }
+                        }
+                    }
+
+                    // Delete the database record
+                    $newsItem->delete();
+                }
+            }
+
+            return back()->with('success', 'Selected news items deleted successfully.');
+        }
+
+        public function frontendNews(Request $request)
+        {
+             $newsItems = contentNews::all();
+            return view('news', ['newsItems' => $newsItems]);
+
         }
 }

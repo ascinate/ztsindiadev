@@ -92,4 +92,28 @@ class ServiceController extends Controller
             return redirect('services')->with('success', 'Service updated successfully.');
         }
 
+          public function serviceDelete(Request $request)
+        {
+            $ids = $request->input('service_ids'); // input name from your checkbox form
+
+            if (!$ids || !is_array($ids)) {
+                return back()->with('error', 'No services selected for deletion.');
+            }
+
+            foreach ($ids as $id) {
+                $service = \App\Models\Service::find($id);
+
+                if ($service) {
+                    // Delete icon if exists
+                    if ($service->icon && file_exists('uploads/' . $service->icon)) {
+                        unlink('uploads/' . $service->icon);
+                    }
+
+                    $service->delete();
+                }
+            }
+
+            return back()->with('success', 'Selected services deleted successfully.');
+        }
+
 }
